@@ -11,21 +11,29 @@ import java.io.IOException;
 public class welComeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	  protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+	 protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 	            throws ServletException, IOException {
 	        Cookie[] cookies = request.getCookies();
 	        boolean loggedIn = false;
+	        String username = null;
+
 	        if (cookies != null) {
 	            for (Cookie cookie : cookies) {
-	                if (cookie.getName().equals("userName")) {
+	                if (cookie.getName().equals("Sushant")) {
 	                    loggedIn = true;
-	                    response.getWriter().println("Welcome, " + cookie.getValue() + "!");
-	                    response.getWriter().println(<a href='logOutServlet'>Logout</a>);
+	                    username = cookie.getValue();
 	                    break;
 	                }
 	            }
 	        }
-	        if (!loggedIn) {
+
+	        if (loggedIn) {
+	            response.setContentType("text/html");
+	            response.getWriter().println("<html><body>");
+	            response.getWriter().println("Welcome, " + username + "!");
+	            response.getWriter().println("<br><a href='logOutServlet'>Logout</a>");
+	            response.getWriter().println("</body></html>");
+	        } else {
 	            response.sendRedirect("index.html");
 	        }
 	    }

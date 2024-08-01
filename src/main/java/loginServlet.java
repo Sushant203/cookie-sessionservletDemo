@@ -18,8 +18,8 @@ public class loginServlet extends HttpServlet {
 	        String password = request.getParameter("password");
 	        
 	        // For simplicity, let's assume the username is "user" and the password is "password"
-	        if ("userName".equals(username) && "password".equals(password)) {
-	            Cookie loginCookie = new Cookie("userName", username);
+	        if ("Sushant".equals(username) && "password".equals(password)) {
+	            Cookie loginCookie = new Cookie("Sushant", username);
 	            loginCookie.setMaxAge(30 * 60); // 30 minutes
 	            response.addCookie(loginCookie);
 	            response.sendRedirect("welComeServlet");
